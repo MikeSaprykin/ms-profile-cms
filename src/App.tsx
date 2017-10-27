@@ -1,19 +1,25 @@
 import * as React from 'react';
 import './App.css';
 import styled from 'styled-components';
-import { graphql } from 'react-apollo';
+import { graphql, QueryProps } from 'react-apollo';
 import gql from 'graphql-tag';
+import { TodoModel } from './store/todo/models/todo.model';
+import Todo from './components/Todo';
 
 const logo = require('./logo.svg');
 
+interface AppData extends QueryProps {
+    todos: Array<TodoModel>;
+}
+
 interface AppPropTypes {
     className?: any;
-    data: any;
+    data: AppData;
 }
 
 class App extends React.Component<AppPropTypes, {}> {
   render() {
-      const { data: { todos }} = this.props;
+    const { data: { todos = [] }} = this.props;
     return (
       <div className={this.props.className}>
         <div className="App-header">
@@ -23,15 +29,12 @@ class App extends React.Component<AppPropTypes, {}> {
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
-          {todos ? todos.map((todo: any, i: number) =>
-              <li key={i}>
-                  <p>{todo.title}</p>
-                  <p>{todo.description}</p>
-                  <p>{todo.done}</p>
-              </li>
-          ) : null}
+          {todos.map(this.renderTodo)}
       </div>
     );
+  }
+  renderTodo(todo: TodoModel, i: number) {
+      return <Todo todo={todo} key={i} />;
   }
 }
 
@@ -41,7 +44,7 @@ const AppStyle = styled(App)`
 
 const Todos = gql`
     query {
-        todos(done: true){
+        todos{
             title,
             description,
             done
