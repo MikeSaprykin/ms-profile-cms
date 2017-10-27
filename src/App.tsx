@@ -1,12 +1,13 @@
 import * as React from 'react';
 import './App.css';
+import styled from 'styled-components';
 
 const logo = require('./logo.svg');
 
-class App extends React.Component {
+class App extends React.Component<{ className?: any}, {}> {
   render() {
     return (
-      <div className="App">
+      <div className={this.props.className}>
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
@@ -19,4 +20,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const AppStyle = styled(App)`
+  background-color: red;
+`;
+
+export default AppStyle;
