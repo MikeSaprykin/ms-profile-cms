@@ -4,12 +4,13 @@
   "private": true,
   "dependencies": {
     "@types/redux-form": "^7.0.7",
-    "apollo-client": "^2.0.1",
+    "apollo-cache-inmemory": "^1.0.0",
+    "apollo-client-preset": "^1.0.1",
     "graphql": "^0.11.7",
     "graphql-tag": "^2.5.0",
     "history": "^4.7.2",
     "react": "^16.0.0",
-    "react-apollo": "^2.0.0",
+    "react-apollo": "^1.4.15",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
@@ -29,6 +30,7 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/graphql": "^0.11.5",
     "@types/jest": "^21.1.5",
     "@types/node": "^8.0.47",
     "@types/ramda": "^0.24.18",
