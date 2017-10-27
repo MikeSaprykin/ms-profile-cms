@@ -21,7 +21,8 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.1.2",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "styled-components": "^2.2.2"
   },
   "scripts": {
     "start": "react-scripts-ts start",
