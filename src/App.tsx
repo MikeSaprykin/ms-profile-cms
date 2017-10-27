@@ -3,7 +3,7 @@ import './App.css';
 import styled from 'styled-components';
 import { graphql, QueryProps } from 'react-apollo';
 import gql from 'graphql-tag';
-import { TodoModel } from './store/todo/models/todo.model';
+import { TodoModel } from 'store/todo/models';
 import Todo from './components/Todo';
 
 const logo = require('./logo.svg');
@@ -12,23 +12,16 @@ interface AppData extends QueryProps {
     todos: Array<TodoModel>;
 }
 
-interface AppPropTypes {
+interface AppPropTypes extends StyledComponent {
     className?: any;
     data: AppData;
 }
 
 class App extends React.Component<AppPropTypes, {}> {
   render() {
-    const { data: { todos = [] }} = this.props;
+    const { data: { todos = [] }, className} = this.props;
     return (
-      <div className={this.props.className}>
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+      <div className={className}>
           {todos.map(this.renderTodo)}
       </div>
     );

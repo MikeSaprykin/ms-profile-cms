@@ -2,9 +2,8 @@ import * as React from 'react';
 import { TodoModel } from '../store/todo/models/todo.model';
 import styled from 'styled-components';
 
-interface TodoProps {
+interface TodoProps extends StyledComponent {
     todo: TodoModel;
-    className?: any;
 }
 
 const todo: React.StatelessComponent<TodoProps> = ({ todo, className }) => {
