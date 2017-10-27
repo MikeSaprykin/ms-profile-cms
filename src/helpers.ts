@@ -8,18 +8,16 @@ export interface ReducerLookUp<T> {
     [key: string]: (state: T, action: Action | ActionWithPayload<any>) => T;
 }
 
-export function lookUpMatcher<T>(
+export const lookUpMatcher = <T>(
     lookUp: ReducerLookUp<T>,
     state: T,
     action: Action | ActionWithPayload<any>
-): T {
-    return lookUp[action.type] ? lookUp[action.type](state, action) : state;
-}
+): T => lookUp[action.type] ? lookUp[action.type](state, action) : state;
 
-export function lookUpReducer<T>(
-    lookUp: ReducerLookUp<T>
-): Reducer<T> {
-    return (state: T, action) => lookUpMatcher(lookUp, state, action);
-}
+export const lookUpReducer = <T>(
+    lookUp: ReducerLookUp<T>,
+    initialState: T
+): Reducer<T> =>
+    (state: T = initialState, action) => lookUpMatcher(lookUp, state, action);
 
 export const toPayload = (action: any) => action.payload;

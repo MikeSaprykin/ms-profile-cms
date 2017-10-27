@@ -6,12 +6,19 @@ export interface TodoState {
         [key: string]: TodoModel
     };
     filter: {
-        done: boolean
+        done: boolean | null
     };
 }
+
+const initialTodosState: TodoState = {
+  todos: {},
+  filter: {
+      done: null
+  }
+};
 
 const lookUp: ReducerLookUp<TodoState> = {
 
 };
 
-export const todoReducer = lookUpReducer(lookUp);
+export const todoReducer = lookUpReducer(lookUp, initialTodosState);
