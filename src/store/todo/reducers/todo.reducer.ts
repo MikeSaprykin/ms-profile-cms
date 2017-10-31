@@ -1,6 +1,12 @@
 import { lookUpReducer, ReducerLookUp } from '../../../helpers';
 import { TodoModel } from '../models';
 
+export enum TodoFilter {
+  ALL,
+  DONE,
+  ACTIVE
+}
+
 export interface TodoState {
   todos: {
     [key: string]: TodoModel;

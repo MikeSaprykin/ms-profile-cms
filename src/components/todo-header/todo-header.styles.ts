@@ -15,9 +15,20 @@ export const TodoHeaderPlus = styled.div`
   user-select: none;
   cursor: pointer;
   margin-right: .5rem;
+  i {
+    font-size: 28px;
+  }
 `;
 
 export const TodoHeaderText = styled.p`
   color: white;
   maring: 0;
+`;
+
+export const TodoFilterWrapper = styled.div`
+
+`;
+
+export const TodoFilterItem = styled.button`
+
 `;
