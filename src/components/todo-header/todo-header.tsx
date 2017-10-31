@@ -4,7 +4,7 @@ import {
     TodoHeaderPlus,
     TodoHeaderText,
     TodoFilterWrapper,
-    TodoFilterItem
+    TodoFilterItem, TodoHeaderInput
 } from './todo-header.styles';
 import { TodoFilter } from '../../store/todo/reducers/todo.reducer';
 
@@ -30,8 +30,7 @@ const filterItems = [
 ];
 
 const todoHeader: React.StatelessComponent<TodoHeaderProps> = ({ onAddClick, onTodoFilter, currentFilter }) => {
-    const generateFilterItems = () => {
-      return filterItems.map(item =>
+    const generateFilterItems = () => filterItems.map(item =>
           (
               <TodoFilterItem
                   key={item.value}
@@ -42,20 +41,22 @@ const todoHeader: React.StatelessComponent<TodoHeaderProps> = ({ onAddClick, onT
               </TodoFilterItem>
           )
       );
-    };
     return (
         <TodoHeader>
             <TodoHeaderPlus onClick={() => onAddClick()}>
-                <i className="material-icons md-36">add</i>
+                <i className="material-icons">add_box</i>
             </TodoHeaderPlus>
             <TodoHeaderText>
-                Add a todo...
+                <TodoHeaderInput
+                    onChange={(e: any) => console.log(e)}
+                    placeholder="Add todo..."
+                />
             </TodoHeaderText>
             <TodoFilterWrapper>
                 {generateFilterItems()}
             </TodoFilterWrapper>
         </TodoHeader>
     );
-}
+};
 
 export default todoHeader;
