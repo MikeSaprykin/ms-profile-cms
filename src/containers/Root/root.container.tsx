@@ -10,18 +10,27 @@ interface AppData extends QueryProps {
     todos: Array<TodoModel>;
 }
 
-interface AppPropTypes {
+export interface AppPropTypes {
     data: AppData;
+    state: any;
+    dispatch: any;
 }
 
 const renderTodo = (todo: TodoModel) => {
     return <Todo todo={todo} key={todo._id} />;
 };
 
-export const Root: React.StatelessComponent<AppPropTypes> = ({ data: { todos = [] } }) =>
-    (
-        <RootWrapper>
-            <TodoHeader onAddClick={() => console.log('CLICKED!')}/>
-            {todos.map(renderTodo)}
-        </RootWrapper>
-    );
+export class Root extends React.Component<AppPropTypes, any> {
+    render () {
+        const { data: { todos = [] } } = this.props;
+        return (
+            <RootWrapper>
+                <TodoHeader
+                    onAddClick={() => console.log('CLICKED!')}
+                    onTodoFilter={(index: number) => console.log(index)}
+                />
+                {todos.map(renderTodo)}
+            </RootWrapper>
+        );
+    }
+}
