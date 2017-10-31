@@ -1,3 +1,3 @@
 declare interface StyledComponent {
-    className?: string;
+  className?: string;
 }
