@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {  QueryProps } from 'react-apollo';
+import { graphql, QueryProps } from 'react-apollo';
 
 import { TodoModel } from 'store/todo/models';
 import Todo from '../../components/todo/Todo';
 import TodoHeader from '../../components/todo-header/todo-header';
 import { RootWrapper } from './root.styles';
-import graphql from 'react-apollo/graphql';
 import { TodosQuerry } from './root.querry';
 import { TodoFilter } from '../../store/todo/reducers/todo.reducer';
 
@@ -26,7 +25,7 @@ const renderTodo = (todo: TodoModel) => {
 };
 
 export const Root: React.StatelessComponent<AppPropTypes> = (props) => {
-    const { data: { todos = [], refetch }, toggleTodoFilter } = props;
+    const { data: { todos = [], refetch }, toggleTodoFilter, done } = props;
     const filterTodos = (filterType: TodoFilter) => {
         toggleTodoFilter(filterType);
         refetch();
@@ -34,6 +33,7 @@ export const Root: React.StatelessComponent<AppPropTypes> = (props) => {
     return (
         <RootWrapper>
             <TodoHeader
+                currentFilter={done}
                 onAddClick={() => console.log('ADD!')}
                 onTodoFilter={filterTodos}
             />

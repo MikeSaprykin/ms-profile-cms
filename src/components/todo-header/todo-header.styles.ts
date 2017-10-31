@@ -1,14 +1,20 @@
 import styled from 'styled-components';
 
+const GREEN_COLOR = '#7EB492';
+
 export const TodoHeader = styled.div`
   border-radius: 4px;
   margin: .5rem 0;
-  background-color: #678865;
+  background-color: ${GREEN_COLOR};
+  box-shadow: 0 1px 3px rgba(0,0,0, .10), 0 1px 2px rgba(0,0,0, .18);
   display: flex;
   width: 100%;
   padding: .2rem 1rem;
   align-items: center;
   color: white;
+  &:hover {
+    box-shadow:0 1px 3px rgba(0,0,0, .14), 0 1px 2px rgba(0,0,0, .22);
+  }
 `;
 
 export const TodoHeaderPlus = styled.div`
@@ -26,9 +32,25 @@ export const TodoHeaderText = styled.p`
 `;
 
 export const TodoFilterWrapper = styled.div`
-
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
 `;
 
-export const TodoFilterItem = styled.button`
-
+export const TodoFilterItem = <any> styled.button`
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  margin: 0 .5rem;
+  font-size: 16px;
+  user-select: none;
+  outline: none;
+  cursor: pointer;
+  background-color: ${(props: any) => props.active ? '#69f0ae' : '#e0e0e0'};
+  box-shadow: 0 1px 3px rgba(0,0,0, .10), 0 1px 2px rgba(0,0,0, .18);
+  color: ${GREEN_COLOR};
+  &:hover {
+   background-color: ${(props: any) => props.active ? '#b9f6ca' : '#eee'};
+  }
+  transition: all ease-in-out .1s;
 `;
