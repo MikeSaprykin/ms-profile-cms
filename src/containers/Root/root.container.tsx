@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql, QueryProps } from 'react-apollo';
+import { graphql, QueryProps, compose } from 'react-apollo';
 
 import { TodoModel } from 'store/todo/models';
 import Todo from '../../components/todo/Todo';
@@ -7,7 +7,7 @@ import TodoHeader from '../../components/todo-header/todo-header';
 import { RootWrapper } from './root.styles';
 import { TodosQuerry } from './root.querry';
 import { TodoFilter } from '../../store/todo/reducers/todo.reducer';
-import { ToggleTodoDone } from './root.mutations';
+import { ToggleTodoDone, AddTodo } from './root.mutations';
 
 interface AppData extends QueryProps {
     todos: Array<TodoModel>;
@@ -19,7 +19,8 @@ export interface AppPropTypes {
     state: any;
     toggleTodoFilter: any;
     done: TodoFilter;
-    mutate: any;
+    toggleDone: Function;
+    addTodo: Function;
 }
 
 const renderTodo = (todo: TodoModel, toggleTodoDone: Function) =>
@@ -31,20 +32,24 @@ const renderTodo = (todo: TodoModel, toggleTodoDone: Function) =>
         />);
 
 export const Root: React.StatelessComponent<AppPropTypes> = (props) => {
-    const { data: { todos = [], refetch }, toggleTodoFilter, done, mutate } = props;
+    const { data: { todos = [], refetch }, toggleTodoFilter, done, toggleDone, addTodo } = props;
     const filterTodos = (done: TodoFilter) => {
         toggleTodoFilter(done);
         refetch({ done });
     };
     const toggleTodoDone = (id: string, done: boolean) => {
-        mutate({ variables: { id, done }})
+        toggleDone({ variables: { id, done }})
+            .then(() => refetch());
+    };
+    const addTodoCall = (data: any) => {
+        addTodo({ variables: { title: data.value }})
             .then(() => refetch());
     };
     return (
         <RootWrapper>
             <TodoHeader
                 currentFilter={done}
-                onAddClick={() => console.log('ADD!')}
+                onAddClick={addTodoCall}
                 onTodoFilter={filterTodos}
             />
             {todos.map((todo) => renderTodo(todo, toggleTodoDone))}
@@ -52,4 +57,12 @@ export const Root: React.StatelessComponent<AppPropTypes> = (props) => {
     );
 };
 
-export default graphql(ToggleTodoDone)(graphql<AppData, AppPropTypes>(TodosQuerry)(Root));
+export default compose(
+    graphql(ToggleTodoDone, {
+        name: 'toggleDone'
+    }),
+    graphql(AddTodo, {
+        name: 'addTodo'
+    }),
+    graphql(TodosQuerry)
+)(Root);
