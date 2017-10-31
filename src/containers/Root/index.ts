@@ -1,12 +1,11 @@
 import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
 import { TodosQuerry } from './root.querry';
-import { Root, AppPropTypes } from './root.container';
+import Root, { AppPropTypes } from './root.container';
+import { toggleTodoFilter } from '../../store/todo/actions/todo.actions';
 
 const mapStateToProps = (state: any) => ({
-  state
+  done: state.todos.filter.done,
 });
 
-const componentWithGraph = graphql<any, AppPropTypes>( TodosQuerry)(Root);
-
-export default <any> connect(mapStateToProps)(componentWithGraph);
+export default connect<any, any, any>(mapStateToProps, { toggleTodoFilter })(Root);

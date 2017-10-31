@@ -5,7 +5,7 @@ export interface ActionWithPayload<T> extends Action {
 }
 
 export interface ReducerLookUp<T> {
-  [key: string]: (state: T, action: Action | ActionWithPayload<any>) => T;
+  [key: string]: (state: T, action: ActionWithPayload<any>) => T;
 }
 
 export const lookUpMatcher = <T>(
