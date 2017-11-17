@@ -23,16 +23,16 @@ const sideBarRoutes: Array<{
     title: string;
 }> = [
     {
+        route: '/descriptions',
+        title: 'Descriptions'
+    },
+    {
         route: '/projects',
         title: 'Projects'
     },
     {
         route: '/technologies',
         title: 'Technologies'
-    },
-    {
-        route: '/descriptions',
-        title: 'Descriptions'
     },
     {
         route: '/categories',

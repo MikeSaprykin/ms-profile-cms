@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import {
+    SideBarContainer,
+    SideBarMenu,
+    SideBarMenuItem,
+    StyledLink
+} from './styles';
 
 interface SideBarMenuItem {
     route: string;
@@ -11,16 +16,18 @@ interface SideBarProps {
 }
 
 const generateSideBarLink = (item: SideBarMenuItem, i: number) => (
-    <li key={i}>
-        <Link to={item.route}>
+    <SideBarMenuItem key={i}>
+        <StyledLink to={item.route} activeClassName={'active'}>
             {item.title}
-        </Link>
-    </li>
+        </StyledLink>
+    </SideBarMenuItem>
 );
 
 export const SideBar: React.StatelessComponent<SideBarProps> = ({ menu = []}) =>
 (
-    <ul>
-        {menu.map(generateSideBarLink)}
-    </ul>
+    <SideBarContainer>
+        <SideBarMenu>
+            {menu.map(generateSideBarLink)}
+        </SideBarMenu>
+    </SideBarContainer>
 );
