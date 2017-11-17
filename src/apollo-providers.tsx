@@ -13,7 +13,7 @@ const client = new ApolloClient({ networkInterface, connectToDevTools: true });
 
 const store = createStore(
     combineReducers({
-        todos: todoReducer,
+        w: todoReducer,
         apollo: client.reducer(),
     }),
     {},
