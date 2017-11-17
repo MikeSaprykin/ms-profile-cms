@@ -50,7 +50,7 @@
             "check-open-brace",
             "check-whitespace"
         ],
-        "quotemark": [true, "single", "jsx-double"],
+        "quotemark": [true, "single", "jsx-sing"],
         "radix": true,
         "semicolon": [true, "always"],
         "switch-default": true,
@@ -73,7 +73,7 @@
                 "variable-declaration": "nospace"
             }
         ],
-        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
+        "variable-name": [false, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
         "whitespace": [
             true,
             "check-branch",

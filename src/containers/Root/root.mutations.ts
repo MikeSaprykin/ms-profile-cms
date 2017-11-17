@@ -12,12 +12,12 @@ export const ToggleTodoDone = gql`
 `;
 
 export const AddTodo = gql`
-    mutation addTodo($title: String!) {
-        addTodo(title: $title) {
-            title,
-            description,
-            done,
-            _id
-        }
+  mutation addTodo($title: String!) {
+    addTodo(title: $title) {
+      title
+      description
+      done
+      _id
     }
+  }
 `;

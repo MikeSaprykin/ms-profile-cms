@@ -6,7 +6,7 @@
     "lib": ["es6", "dom", "esnext.asynciterable"],
     "sourceMap": true,
     "allowJs": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "jsx": "react",
     "moduleResolution": "node",
     "paths" : {

@@ -1,11 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './apollo-providers';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import { routes } from './routing.config';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
+    <BrowserRouter>
+        {renderRoutes(routes)}
+    </BrowserRouter>,
+    document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
