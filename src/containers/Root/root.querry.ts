@@ -1,10 +1,15 @@
 import gql from 'graphql-tag';
 
 export const TodosQuerry = gql`
-  query getTodos($done: Int!) {
-    todos(done: $done) {
+  query {
+    descriptions {
       title
-      done
+      description
+      icon
+      _id
+    }
+    technologies {
+      title
       _id
     }
   }

@@ -36,7 +36,7 @@ export const TodoFilterWrapper = styled.div`
   justify-content: flex-end;
 `;
 
-export const TodoFilterItem = <any> styled.button`
+export const TodoFilterItem = <any>styled.button`
   padding: 6px 12px;
   border-radius: 4px;
   border: none;
@@ -54,7 +54,7 @@ export const TodoFilterItem = <any> styled.button`
   transition: all ease-in-out 0.1s;
 `;
 
-export const TodoHeaderInput = <any> styled.input`
+export const TodoHeaderInput = <any>styled.input`
   background: transparent;
   color: #fff;
   placeholder-color: #fff;

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './apollo-providers';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
+import Root from './root';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
+    <Root />,
+    document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
