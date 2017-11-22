@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
     "outDir": "build/dist",
-    "module": "esnext",
     "target": "es5",
     "lib": ["es6", "dom", "esnext.asynciterable"],
     "sourceMap": true,
     "allowJs": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "jsx": "react",
     "moduleResolution": "node",
     "paths" : {
@@ -14,8 +13,9 @@
     },
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
+    "skipLibCheck": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "typeRoots": [

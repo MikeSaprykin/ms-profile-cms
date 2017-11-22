@@ -1,2 +1,2 @@
-import { Descriptions } from './descriptions';
+import Descriptions from './Descriptions';
 export default Descriptions;

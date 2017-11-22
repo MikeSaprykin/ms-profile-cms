@@ -1,2 +1,2 @@
-import { Categories } from './Categories';
+import Categories from './Categories';
 export default Categories;
