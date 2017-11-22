@@ -15,10 +15,6 @@ export const routes: RouteConfig[] = [
     component: App,
     routes: [
       {
-        path: '/',
-        component: () => <Redirect to='/descriptions'/>
-      },
-      {
         path: '/categories',
         component: Categories,
       },
@@ -33,6 +29,10 @@ export const routes: RouteConfig[] = [
       {
         path: '/descriptions',
         component: Descriptions,
+      },
+      {
+          path: '/',
+          component: () => <Redirect to='/descriptions'/>
       }
     ],
   },

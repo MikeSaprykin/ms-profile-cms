@@ -29,7 +29,7 @@ export const SideBarMenuItem = styled.li`
 `;
 
 export const StyledLink = styled(NavLink)`
-  padding: .5rem .5rem;
+  padding: 0.5rem 0.5rem;
   text-decoration: none;
   color: white;
   flex-grow: 1;
@@ -43,7 +43,7 @@ export const StyledLink = styled(NavLink)`
     height: 2px;
     width: 0;
     visibility: hidden;
-    transition: .2s ease all;
+    transition: 0.2s ease all;
   }
   &::after {
     content: '';
@@ -54,21 +54,22 @@ export const StyledLink = styled(NavLink)`
     height: 2px;
     width: 0;
     visibility: hidden;
-    transition: .3s ease all;
+    transition: 0.3s ease all;
   }
-  &.active, &:hover {
-      &::after {
-        visibility: visible;
-        left: 0;
-        width: 100%;
-        background: white;
-      }
-    
-      &::before {
-        visibility: visible;
-        right: 0;
-        width: 100%;
-        background: white;
-      }
+  &.active,
+  &:hover {
+    &::after {
+      visibility: visible;
+      left: 0;
+      width: 100%;
+      background: white;
+    }
+
+    &::before {
+      visibility: visible;
+      right: 0;
+      width: 100%;
+      background: white;
+    }
   }
 `;
