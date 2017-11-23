@@ -2,13 +2,21 @@ import * as React from 'react';
 import { graphql, QueryProps } from 'react-apollo';
 import { descriptionsQuery } from './query';
 import Loader from '../../components/Loader';
+import { CardHeader } from '../../components/Card';
+import Button from '../../components/Button';
 
 import styled from 'styled-components';
 
-const Container = styled.div`
-  position: relative;
-  height: 400px;
-  width: 400px;
+const HeaderContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const ButtonContent = styled.span`
+  i {
+    margin-right: .5rem;
+  }
+
 `;
 
 interface DescriptionsData extends QueryProps {
@@ -28,11 +36,21 @@ export class Descriptions extends React.Component<DescriptionsPropTypes> {
     render() {
         const { data: { loading, descriptions }} = this.props;
         return (
-            <Container>
+            <div>
                 {loading ? <Loader /> : null}
-                <h1>Descriptions</h1>
+                <CardHeader>
+                    <HeaderContent>
+                        <h3>Descriptions</h3>
+                        <Button>
+                            <ButtonContent>
+                                <i className='fa fa-plus' />
+                                Add new description
+                            </ButtonContent>
+                        </Button>
+                    </HeaderContent>
+                </CardHeader>
                 {descriptions ? descriptions.map(this.renderDescription) : null}
-            </Container>
+            </div>
         );
     }
 }
