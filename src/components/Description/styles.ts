@@ -69,3 +69,7 @@ export const DescriptionBlock = styled.div`
 export const DescriptionBlockItem = styled.div`
   ${descriptionsMixin()};
 `;
+
+export const DescriptionDetails = styled.div`
+  border-top: 1px solid #eee;
+`;

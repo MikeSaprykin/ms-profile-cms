@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     DescriptionWrapper,
     DescriptionContainer,
-    
+    DescriptionDetails
 } from './styles';
 import { DescriptionModel } from '../../store';
 import { DescriptionContent } from './DescriptionContent';
@@ -31,7 +31,10 @@ export const Description: React.StatelessComponent<DescriptionProps> =
             />
             {
                 description.expanded ?
-                <h1>Expanded</h1> :
+                <DescriptionDetails>
+                    <h4>Description:</h4>
+                    {description.description}
+                </DescriptionDetails> :
                 null
             }
         </DescriptionWrapper>
