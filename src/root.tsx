@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import { routerReducer, ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
-import { todoReducer as todos } from './store';
+import { descriptionsReducer as descriptions, DescriptionsState } from './store';
 import { routes } from './routing.config';
 
 const link = new HttpLink({ uri: 'http://localhost:8080/graphql' });
@@ -23,9 +23,13 @@ const client: any = new ApolloClient({
     connectToDevTools: true
 });
 
+export interface State {
+    descriptions: DescriptionsState;
+}
+
 const store = createStore(
-    combineReducers({
-        todos,
+    combineReducers<State>({
+        descriptions,
         routing: routerReducer
     }),
     {},

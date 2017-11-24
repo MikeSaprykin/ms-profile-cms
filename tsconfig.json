@@ -15,8 +15,6 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "noImplicitThis": true,
-    "noImplicitAny": false,
-    "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "typeRoots": [
       "node_modules/@types",

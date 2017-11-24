@@ -34,6 +34,7 @@ export const StyledLink = styled(NavLink)`
   color: white;
   flex-grow: 1;
   position: relative;
+  font-size: 16px;
   &::before {
     content: '';
     position: absolute;

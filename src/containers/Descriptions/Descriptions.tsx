@@ -1,43 +1,35 @@
 import * as React from 'react';
 import { graphql, QueryProps } from 'react-apollo';
+import { connect, DispatchProp } from 'react-redux';
 import { descriptionsQuery } from './query';
-import Loader from '../../components/Loader';
 import { CardHeader } from '../../components/Card';
 import Button from '../../components/Button';
 
-import styled from 'styled-components';
+import { HeaderContent, ButtonContent } from './styles';
+import { DescriptionsState } from '../../store';
+import { setDescriptions } from '../../store/descriptions/actions/descriptions.actions';
 
-const HeaderContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const ButtonContent = styled.span`
-  i {
-    margin-right: .5rem;
-  }
-
-`;
+import DescriptionsList from './DescriptionsList';
 
 interface DescriptionsData extends QueryProps {
     descriptions: Array<any>;
 }
 
-export interface DescriptionsPropTypes {
+export interface DescriptionsPropTypes extends DispatchProp<DescriptionsState> {
     data: DescriptionsData;
+    setDescriptions: any;
 }
 
 export class Descriptions extends React.Component<DescriptionsPropTypes> {
 
-    renderDescription(description: any, i: number) {
-        return <p key={i}>{description.title}</p>;
+    componentWillReceiveProps(nextProps: DescriptionsPropTypes) {
+        this.props.setDescriptions(nextProps.data.descriptions);
     }
 
     render() {
-        const { data: { loading, descriptions }} = this.props;
+        const { data: { loading }} = this.props;
         return (
             <div>
-                {loading ? <Loader /> : null}
                 <CardHeader>
                     <HeaderContent>
                         <h3>Descriptions</h3>
@@ -49,9 +41,9 @@ export class Descriptions extends React.Component<DescriptionsPropTypes> {
                         </Button>
                     </HeaderContent>
                 </CardHeader>
-                {descriptions ? descriptions.map(this.renderDescription) : null}
+                <DescriptionsList loading={loading} />
             </div>
         );
     }
 }
-export default graphql(descriptionsQuery)(Descriptions);
+export default connect<any>(null, { setDescriptions })(graphql(descriptionsQuery)(Descriptions));
