@@ -1,6 +1,7 @@
 import { DescriptionModel } from '../models/index';
 import { ActionWithPayload } from '../../../helpers';
 import { DescriptionTypes as types } from './descriptions.types';
+import { Action } from 'redux';
 
 export const setDescriptions = (
   payload: Array<DescriptionModel>
@@ -10,8 +11,19 @@ export const setDescriptions = (
 });
 
 export const toggleDescriptionExpanded = (
-    payload: string
+  payload: string
 ): ActionWithPayload<string> => ({
-   type: types.TOGGLE_DESCRIPTION_EXPANDED,
-   payload
+  type: types.TOGGLE_DESCRIPTION_EXPANDED,
+  payload,
+});
+
+export const openDeleteModal = (
+  payload: string
+): ActionWithPayload<string> => ({
+  type: types.OPEN_DELETE_MODAL,
+  payload,
+});
+
+export const hideDeleteModal = (): Action => ({
+  type: types.HIDE_DELETE_MODAL,
 });

@@ -43,15 +43,18 @@
     "@types/node": "^8.0.53",
     "@types/ramda": "^0.24.18",
     "@types/react": "^16.0.25",
+    "@types/react-addons-css-transition-group": "^15.0.3",
     "@types/react-dom": "^16.0.3",
     "@types/react-redux": "^5.0.13",
     "@types/react-router": "^4.0.18",
     "@types/react-router-config": "^1.0.4",
     "@types/react-router-dom": "^4.2.2",
     "@types/react-router-redux": "^5.0.10",
+    "animated-styled-components": "^0.2.6",
     "lodash": "^4.17.4",
     "node-sass-chokidar": "0.0.3",
     "prettier": "^1.8.2",
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "react-addons-css-transition-group": "^15.6.2"
   }
 }

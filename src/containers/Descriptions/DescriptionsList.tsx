@@ -9,13 +9,13 @@ import { State } from '../../root';
 
 import Description from '../../components/Description';
 import Loader from '../../components/Loader';
-import { DescriptionModel, toggleDescriptionExpanded } from '../../store';
-import { ActionWithPayload } from '../../helpers';
+import { DescriptionModel, toggleDescriptionExpanded, openDeleteModal } from '../../store';
 
 interface DescriptionsListProps extends DispatchProp<State> {
     loading: boolean;
     descriptions?: Array<DescriptionModel>;
-    toggleDescriptionExpanded: (payload: string) => ActionWithPayload<string>;
+    openDeleteModal?: any;
+    toggleDescriptionExpanded?: any;
 }
 
 class DescriptionsList extends React.Component<DescriptionsListProps> {
@@ -29,7 +29,7 @@ class DescriptionsList extends React.Component<DescriptionsListProps> {
     }
 
     onDelete(id: any) {
-        console.log('DELETE ->', id);
+        this.props.openDeleteModal(id);
     }
 
     renderDescription() {
@@ -64,4 +64,9 @@ const mapStateToProps = (state: State) => ({
     descriptions: selectDescriptions(state)
 });
 
-export default connect<any, any, any>(mapStateToProps, { toggleDescriptionExpanded })(DescriptionsList);
+export default connect<any>(
+    mapStateToProps,
+    {
+        toggleDescriptionExpanded,
+        openDeleteModal
+    })(DescriptionsList);
