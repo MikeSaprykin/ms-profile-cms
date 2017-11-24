@@ -28,3 +28,25 @@ export const Button = styled.button`
   cursor: pointer;
   outline: none;
 `;
+
+export const DangerButton = styled(Button)`
+  background-color: #f44336;
+  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, .14), 
+  0 3px 1px -2px rgba(244, 67, 54, .2), 
+  0 1px 5px 0 rgba(244, 67, 54, .12);
+  &:hover, &:active {
+    box-shadow: 0 14px 26px -12px rgba(244, 67, 54, .42),
+     0 4px 23px 0 rgba(0, 0, 0, .12), 
+     0 8px 10px -5px rgba(244, 67, 54, .2)
+  }
+`;
+
+export const DefaultButton = styled(Button)`
+  background-color: #999;
+  box-shadow: 0 2px 2px 0 hsla(0, 0%, 60%, .14), 
+  0 3px 1px -2px hsla(0, 0%, 60%, .2), 0 1px 5px 0 hsla(0, 0%, 60%, .12);
+  &:hover, &:active {
+    box-shadow: 0 14px 26px -12px hsla(0, 0%, 60%, .42), 
+    0 4px 23px 0 rgba(0, 0, 0, .12), 0 8px 10px -5px hsla(0, 0%, 60%, .2);
+  }
+`;

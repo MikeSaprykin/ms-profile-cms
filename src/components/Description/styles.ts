@@ -7,12 +7,12 @@ export const descriptionsMixin = () =>
     align-items: center;
     justify-content: center;
     &.description-icon {
-      width: 30%;
+      width: 20%;
       display: block;
     }
     ,
     &.description-title {
-      width: 40%;
+      width: 50%;
     }
     ,
     &.description-actions {

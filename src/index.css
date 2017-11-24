@@ -118,3 +118,7 @@ h4 small, h5 .small, h5 small, h6 .small, h6 small {
 p {
   margin: 0 0 10px
 }
+
+#root {
+    height: 100%;
+}

@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { graphql, QueryProps } from 'react-apollo';
 import { connect, DispatchProp } from 'react-redux';
+
+import { isEqual } from 'lodash';
+
 import { descriptionsQuery } from './query';
 import { CardHeader } from '../../components/Card';
-import Button from '../../components/Button';
-import Modal from '../../components/Modal';
+import { Button } from '../../components/Button';
+import DeleteDescriptionModal from '../../components/DeleteDescriptionModal';
 
 import { HeaderContent, ButtonContent } from './styles';
 import { State } from '../../root';
@@ -26,7 +29,9 @@ export interface DescriptionsPropTypes extends DispatchProp<DescriptionsState> {
 export class Descriptions extends React.Component<DescriptionsPropTypes, any> {
 
     componentWillReceiveProps(nextProps: DescriptionsPropTypes) {
-        this.props.setDescriptions(nextProps.data.descriptions);
+        if (!isEqual(nextProps.data.descriptions, this.props.data.descriptions)) {
+            this.props.setDescriptions(nextProps.data.descriptions);
+        }
     }
 
     handleClose() {
@@ -49,12 +54,10 @@ export class Descriptions extends React.Component<DescriptionsPropTypes, any> {
                     </HeaderContent>
                 </CardHeader>
                 <DescriptionsList loading={loading} />
-                <Modal
+                <DeleteDescriptionModal
                     visible={deleteModal}
-                    onOverlayClick={() => this.handleClose()}
-                >
-                    Oppa Oppa
-                </Modal>
+                    onClose={() => this.handleClose()}
+                />
             </div>
         );
     }
