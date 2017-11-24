@@ -12,13 +12,15 @@ import {
 interface DeleteDescriptionModalProps {
     visible: boolean;
     onClose: Function;
+    onDeleteConfirm: Function;
 }
 
 export const DeleteDescriptionModal: React.StatelessComponent<DeleteDescriptionModalProps> =
     (
         {
             visible,
-            onClose
+            onClose,
+            onDeleteConfirm
         }
     ) => (
         <Modal
@@ -36,7 +38,7 @@ export const DeleteDescriptionModal: React.StatelessComponent<DeleteDescriptionM
                     <Button onClick={() => onClose()}>
                         Cancel
                     </Button>
-                    <DangerButton>
+                    <DangerButton onClick={() => onDeleteConfirm()}>
                         Delete
                     </DangerButton>
                 </DeleteDescriptionButtons>

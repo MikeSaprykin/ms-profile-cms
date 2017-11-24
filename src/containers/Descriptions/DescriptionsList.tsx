@@ -4,12 +4,15 @@ import { map } from 'lodash';
 
 import { DescriptionsListWrapper } from './styles';
 
-import { selectDescriptions } from '../../store';
-import { State } from '../../root';
-
 import Description from '../../components/Description';
 import Loader from '../../components/Loader';
-import { DescriptionModel, toggleDescriptionExpanded, openDeleteModal } from '../../store';
+import {
+    DescriptionModel,
+    toggleDescriptionExpanded,
+    openDeleteModal,
+    selectDescriptions,
+    State
+} from '../../store';
 
 interface DescriptionsListProps extends DispatchProp<State> {
     loading: boolean;

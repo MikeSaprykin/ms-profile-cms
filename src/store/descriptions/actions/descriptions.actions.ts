@@ -27,3 +27,11 @@ export const openDeleteModal = (
 export const hideDeleteModal = (): Action => ({
   type: types.HIDE_DELETE_MODAL,
 });
+
+export const confirmDeleteDescription = (): Action => ({
+   type: types.DELETE_DESCRIPTION_CONFIRM
+});
+
+export const deleteDescriptionSuccess = (): Action => ({
+   type: types.DELETE_DESCRIPTION_SUCCESS
+});

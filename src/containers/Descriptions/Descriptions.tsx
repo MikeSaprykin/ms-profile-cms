@@ -10,8 +10,14 @@ import { Button } from '../../components/Button';
 import DeleteDescriptionModal from '../../components/DeleteDescriptionModal';
 
 import { HeaderContent, ButtonContent } from './styles';
-import { State } from '../../root';
-import { DescriptionsState, selectDeleteModal, setDescriptions, hideDeleteModal } from '../../store';
+import {
+    DescriptionsState,
+    selectDeleteModal,
+    setDescriptions,
+    hideDeleteModal,
+    confirmDeleteDescription,
+    State
+} from '../../store';
 
 import DescriptionsList from './DescriptionsList';
 
@@ -23,6 +29,7 @@ export interface DescriptionsPropTypes extends DispatchProp<DescriptionsState> {
     data: DescriptionsData;
     setDescriptions: any;
     hideDeleteModal: any;
+    confirmDeleteDescription: any;
     deleteModal: boolean;
 }
 
@@ -34,12 +41,13 @@ export class Descriptions extends React.Component<DescriptionsPropTypes, any> {
         }
     }
 
-    handleClose() {
-        this.props.hideDeleteModal();
-    }
-
     render() {
-        const { data: { loading }, deleteModal } = this.props;
+        const {
+            data: { loading },
+            deleteModal,
+            confirmDeleteDescription,
+            hideDeleteModal
+        } = this.props;
         return (
             <div>
                 <CardHeader>
@@ -56,7 +64,8 @@ export class Descriptions extends React.Component<DescriptionsPropTypes, any> {
                 <DescriptionsList loading={loading} />
                 <DeleteDescriptionModal
                     visible={deleteModal}
-                    onClose={() => this.handleClose()}
+                    onClose={() => hideDeleteModal()}
+                    onDeleteConfirm={() => confirmDeleteDescription()}
                 />
             </div>
         );
@@ -70,7 +79,8 @@ export default connect<any>(
     mapStateToProps,
     {
         setDescriptions,
-        hideDeleteModal
+        hideDeleteModal,
+        confirmDeleteDescription
     }
 )(
     graphql(descriptionsQuery)(Descriptions)
