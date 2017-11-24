@@ -11,17 +11,24 @@ import {
     descriptionsReducer as descriptions,
     deleteDescription
 } from './descriptions';
+import {
+    ToastsState,
+    toastsReducer as toasts,
+    triggerToastEpic
+} from './toasts';
 
-const rootEpic = combineEpics(deleteDescription);
+const rootEpic = combineEpics(deleteDescription, triggerToastEpic);
 
 export interface State {
     descriptions: DescriptionsState;
+    toasts: ToastsState;
 }
 
 export const store = createStore(
     combineReducers<State>({
         descriptions,
-        routing
+        routing,
+        toasts
     }),
     {},
     composeWithDevTools(
