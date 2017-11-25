@@ -19,8 +19,8 @@ export const selectDeleteModal = createSelector(
 );
 
 export const selectIdForDeleteState = (state: DescriptionsState) =>
-    state.idForDelete;
+  state.idForDelete;
 export const selectIdForDelete = createSelector(
-    descriptionsStateSelector,
-    selectIdForDeleteState
+  descriptionsStateSelector,
+  selectIdForDeleteState
 );

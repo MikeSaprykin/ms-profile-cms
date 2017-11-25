@@ -9,22 +9,16 @@ import { Toast } from '../models';
 import { ToastsTypes as types, hideToast, showToast } from '../actions';
 
 export const triggerToastEpic = (actions$, store) =>
-    actions$.pipe(
-        ofType(types.TRIGGER_TOAST),
-        map(toPayload),
-        map(({
-                 color,
-                 message,
-                 canBeDismissed,
-                 autoDismiss,
-                 dismissTime
-        }) => {
-            const toast = new Toast(color, message, canBeDismissed);
-            if (autoDismiss) {
-                Observable.interval(dismissTime || 2500)
-                    .pipe(take(1))
-                    .subscribe(() => store.dispatch(hideToast(toast.id)));
-            }
-            return showToast(toast);
-        })
-    );
+  actions$.pipe(
+    ofType(types.TRIGGER_TOAST),
+    map(toPayload),
+    map(({ color, message, canBeDismissed, autoDismiss, dismissTime }) => {
+      const toast = new Toast(color, message, canBeDismissed);
+      if (autoDismiss) {
+        Observable.interval(dismissTime || 2500)
+          .pipe(take(1))
+          .subscribe(() => store.dispatch(hideToast(toast.id)));
+      }
+      return showToast(toast);
+    })
+  );
