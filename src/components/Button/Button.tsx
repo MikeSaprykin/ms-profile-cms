@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Button = styled.button`
   color: #fff;
@@ -29,7 +30,11 @@ export const Button = styled.button`
   outline: none;
 `;
 
-export const DangerButton = styled(Button)`
+export const ButtonLink = Button.extend`
+  padding: 0;
+`;
+
+export const DangerButton = Button.extend`
   background-color: #f44336;
   box-shadow: 0 2px 2px 0 rgba(244, 67, 54, .14), 
   0 3px 1px -2px rgba(244, 67, 54, .2), 
@@ -41,7 +46,7 @@ export const DangerButton = styled(Button)`
   }
 `;
 
-export const DefaultButton = styled(Button)`
+export const DefaultButton = Button.extend`
   background-color: #999;
   box-shadow: 0 2px 2px 0 hsla(0, 0%, 60%, .14), 
   0 3px 1px -2px hsla(0, 0%, 60%, .2), 0 1px 5px 0 hsla(0, 0%, 60%, .12);

@@ -36,9 +36,7 @@ class DescriptionsList extends React.Component<DescriptionsListProps> {
     }
 
     renderDescription() {
-        const { descriptions } = this.props;
-        return descriptions ?
-            map(descriptions, description => (
+        return map(this.props.descriptions, description => (
             <Description
                 key={description._id}
                 description={description}
@@ -50,7 +48,7 @@ class DescriptionsList extends React.Component<DescriptionsListProps> {
                     }
                 }
             />
-            )) : null;
+            ));
     }
 
     render() {
