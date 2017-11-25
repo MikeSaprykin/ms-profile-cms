@@ -6,7 +6,7 @@ export const LoaderOverlay = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, .7);
+  background-color: rgba(255, 255, 255, 0.7);
 `;
 
 export const LoaderContainer = styled.div`
@@ -38,7 +38,6 @@ export const LoaderItem = styled.div`
   z-index: 21;
   height: 1em;
   @keyframes rotate {
-  
   }
 `;
 
@@ -69,9 +68,9 @@ const strokeDashArray = keyframes`
 `;
 
 export const LoaderCircle = styled.circle`
-    fill: transparent;
-    stroke: #3598dc;
-    stroke-width: 0.07em;
-    stroke-dasharray: 2.3525em 0.4705em;
-    animation: 1.3s ${strokeDashArray} infinite linear, 24s infinite linear;
+  fill: transparent;
+  stroke: #3598dc;
+  stroke-width: 0.07em;
+  stroke-dasharray: 2.3525em 0.4705em;
+  animation: 1.3s ${strokeDashArray} infinite linear, 24s infinite linear;
 `;

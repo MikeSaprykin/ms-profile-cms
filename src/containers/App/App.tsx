@@ -3,6 +3,8 @@ import SideBar from '../../components/SideBar';
 import { renderRoutes, RouteConfig } from 'react-router-config';
 import { AppWrapper, AppContent } from './styles';
 
+import Toasts from '../Toasts';
+
 interface AppProps {
     route: RouteConfig;
 }
@@ -14,6 +16,7 @@ export const App: React.StatelessComponent<AppProps> = ({ route }) => {
             <AppContent>
                 {renderRoutes(route.routes)}
             </AppContent>
+            <Toasts />
         </AppWrapper>
     );
 };
