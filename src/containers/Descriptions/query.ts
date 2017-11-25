@@ -5,6 +5,8 @@ export const descriptionsQuery = gql`
     descriptions {
       title
       _id
+      description
+      icon
     }
   }
 `;
