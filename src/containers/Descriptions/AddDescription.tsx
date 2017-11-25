@@ -4,7 +4,8 @@ import { ButtonLink } from '../../components/Button';
 import {
     ButtonLinkContent,
     AddDescriptionContent,
-    AddDescriptionTitle
+    AddDescriptionTitle,
+    AddDescriptionForm
 } from './styles';
 
 export const AddDescription = () => (
@@ -22,5 +23,8 @@ export const AddDescription = () => (
                 </AddDescriptionTitle>
             </AddDescriptionContent>
         </CardHeader>
+        <AddDescriptionForm>
+            Oppa
+        </AddDescriptionForm>
     </div>
 );

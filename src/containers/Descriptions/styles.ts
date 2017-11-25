@@ -8,7 +8,7 @@ export const HeaderContent = styled.div`
 `;
 
 export const DescriptionsSubHeader = styled.p`
-
+  color: #999;
 `;
 
 export const ButtonLinkContent = styled(Link)`
@@ -37,4 +37,8 @@ export const AddDescriptionContent = styled.div`
 
 export const AddDescriptionTitle = styled.h3`
   margin: 0 0 0 2rem;
+`;
+
+export const AddDescriptionForm = styled.div`
+
 `;

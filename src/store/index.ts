@@ -1,6 +1,7 @@
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
+import { reducer as forms } from 'redux-form';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {
   DescriptionsState,
@@ -25,6 +26,7 @@ export const store = createStore(
     descriptions,
     routing,
     toasts,
+    forms
   }),
   {},
   composeWithDevTools(applyMiddleware(createEpicMiddleware(rootEpic)))
