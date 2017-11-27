@@ -39,6 +39,6 @@ export const AddDescriptionTitle = styled.h3`
   margin: 0 0 0 2rem;
 `;
 
-export const AddDescriptionForm = styled.div`
+export const AddDescriptionFormWrapper = styled.div`
 
 `;

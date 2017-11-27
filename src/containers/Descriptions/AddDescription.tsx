@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { CardHeader } from '../../components/Card';
 import { ButtonLink } from '../../components/Button';
+import { AddDescriptionForm } from './AddDescriptionForm';
 import {
     ButtonLinkContent,
     AddDescriptionContent,
     AddDescriptionTitle,
-    AddDescriptionForm
+    AddDescriptionFormWrapper
 } from './styles';
 
 export const AddDescription = () => (
@@ -23,8 +24,8 @@ export const AddDescription = () => (
                 </AddDescriptionTitle>
             </AddDescriptionContent>
         </CardHeader>
-        <AddDescriptionForm>
-            Oppa
-        </AddDescriptionForm>
+        <AddDescriptionFormWrapper>
+            <AddDescriptionForm />
+        </AddDescriptionFormWrapper>
     </div>
 );
