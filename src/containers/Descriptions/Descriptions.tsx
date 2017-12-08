@@ -36,8 +36,15 @@ export interface DescriptionsPropTypes extends DispatchProp<DescriptionsState> {
 export class DescriptionsComponent extends React.Component<DescriptionsPropTypes, any> {
 
     componentWillReceiveProps(nextProps: DescriptionsPropTypes) {
-        if (!isEqual(nextProps.data.descriptions, this.props.data.descriptions)) {
+        if (!isEqual(nextProps.data.descriptions.length, this.props.data.descriptions)) {
             this.props.setDescriptions(nextProps.data.descriptions);
+        }
+    }
+
+    componentWillMount() {
+        const { setDescriptions, data: { descriptions }} = this.props;
+        if (descriptions) {
+            setDescriptions(descriptions);
         }
     }
 

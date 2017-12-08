@@ -22,4 +22,4 @@ export class DescriptionsRootComponent extends React.Component<DescriptionsRootP
     }
 }
 
-export const DescriptionsRoot = graphql(descriptionsQuery)(DescriptionsRootComponent);
+export const DescriptionsRoot = DescriptionsRootComponent;

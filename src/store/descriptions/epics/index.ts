@@ -18,7 +18,7 @@ import { deleteDescriptionMutation, addDescriptionMutation } from '../../../cont
 import { descriptionsQuery } from '../../../containers/Descriptions/query';
 
 const updateDescriptionsProxy = (proxy, result) => {
-    const data = proxy.readQuery({ query: descriptionsQuery });
+    const data = proxy.readQuery({ query: descriptionsQuery }, true);
     data.descriptions = result;
     proxy.writeQuery({ query: descriptionsQuery, data });
 };
