@@ -4,9 +4,10 @@ import {
     InputGroup,
     Input,
     InputWrapper,
-    InputHelperText
+    InputHelperText,
+    InputErrorText
 } from './styles';
-import { Field, WrappedFieldProps } from 'redux-form';
+import { Field, Validator } from 'redux-form';
 
 interface InputGroupProps {
     label?: string;
@@ -14,10 +15,11 @@ interface InputGroupProps {
     name: string;
     placeholder?: string;
     helperText?: string;
+    validators?: Validator | Validator[];
 }
 
-const generateInputClass = ({ active, valid, invalid }): string => {
-    const activeClass = active ? 'active' : '';
+export const generateInputClass = ({ active, valid, invalid, submitFailed }): string => {
+    const activeClass = active || submitFailed ? 'active' : '';
     const validClass = valid ? 'valid' : '';
     const invalidClass = invalid ? 'invalid' : '';
     return `${activeClass} ${validClass} ${invalidClass}`;
@@ -29,9 +31,13 @@ const renderInput = field => {
         <InputWrapper className={generateInputClass(meta)}>
             <Input {...input} placeholder={placeholder} type={type}/>
             {
-                meta.active && title ?
+                meta.active && title && !(meta.submitFailed && meta.error) ?
                     <InputHelperText>{title}</InputHelperText> :
                     null
+            }
+            {
+                meta.submitFailed && meta.error ?
+                    <InputErrorText>{meta.error}</InputErrorText> : null
             }
         </InputWrapper>
     );
@@ -44,7 +50,8 @@ export const InputGroupComponent: React.StatelessComponent<InputGroupProps> =
             type = 'string',
             name,
             placeholder = '',
-            helperText = ''
+            helperText = '',
+            validators
         }
     ) => (
     <InputGroup>
@@ -57,6 +64,7 @@ export const InputGroupComponent: React.StatelessComponent<InputGroupProps> =
             type={type}
             placeholder={placeholder}
             title={helperText}
+            validate={validators}
         />
     </InputGroup>
 );

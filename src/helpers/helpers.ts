@@ -1,5 +1,5 @@
 import { Action, Reducer } from 'redux';
-import { not, isNil } from 'ramda';
+import { not, isNil, curry } from 'ramda';
 
 export interface ActionWithPayload<T> extends Action {
   payload?: T;
@@ -22,5 +22,10 @@ export const lookUpReducer = <T>(
   lookUpMatcher(lookUp, state, action);
 
 export const toPayload = (action: any) => action.payload;
+
+export const toggleLoading: any = curry((loading: boolean, state) => ({
+  ...state,
+  loading,
+}));
 
 export const notNil = val => not(isNil(val));

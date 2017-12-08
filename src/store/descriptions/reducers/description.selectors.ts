@@ -24,3 +24,8 @@ export const selectIdForDelete = createSelector(
   descriptionsStateSelector,
   selectIdForDeleteState
 );
+export const selectLoadingState = (state: DescriptionsState) => state.loading;
+export const selectLoading = createSelector(
+  descriptionsStateSelector,
+  selectLoadingState
+);

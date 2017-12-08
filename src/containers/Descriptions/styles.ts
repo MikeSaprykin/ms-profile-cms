@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Button } from '../../components/Button';
 
 export const HeaderContent = styled.div`
   display: flex;
@@ -35,10 +36,16 @@ export const AddDescriptionContent = styled.div`
   align-items: center;
 `;
 
-export const AddDescriptionTitle = styled.h3`
-  margin: 0 0 0 2rem;
+export const AddDescriptionTitle = styled.h4`
+  margin: 0 1rem;
+  font-weight: 300;
 `;
 
 export const AddDescriptionFormWrapper = styled.div`
+  padding-top: 50px;
+`;
 
+export const AddDescriptionSubmit = styled(Button)`
+  margin: 3rem auto;
+  text-align: center;
 `;

@@ -3,7 +3,7 @@ import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 
-import { toPayload } from '../../../helpers';
+import { toPayload } from '../../../helpers/helpers';
 
 import { Toast } from '../models';
 import { ToastsTypes as types, hideToast, showToast } from '../actions';

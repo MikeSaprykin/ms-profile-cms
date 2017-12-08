@@ -1,4 +1,4 @@
-import { lookUpReducer, ReducerLookUp } from '../../../helpers';
+import { lookUpReducer, ReducerLookUp, toggleLoading } from '../../../helpers';
 import { DescriptionModel } from '../models';
 import { DescriptionTypes as types } from '../actions';
 import { mapKeys } from 'lodash';
@@ -9,12 +9,14 @@ export interface DescriptionsState {
   };
   deleteModal: boolean;
   idForDelete: string;
+  loading: boolean;
 }
 
 const initialState: DescriptionsState = {
   descriptions: null,
   deleteModal: false,
   idForDelete: null,
+  loading: false,
 };
 
 const lookUp: ReducerLookUp<DescriptionsState> = {
@@ -50,6 +52,8 @@ const lookUp: ReducerLookUp<DescriptionsState> = {
     idForDelete: null,
     deleteModal: false,
   }),
+  [types.ADD_DESCRIPTION]: toggleLoading(true),
+  [types.ADD_DESCRIPTION_SUCCESS]: toggleLoading(false)
 };
 
 export const descriptionsReducer = lookUpReducer(lookUp, initialState);

@@ -10,3 +10,18 @@ export const deleteDescriptionMutation = gql`
     }
   }
 `;
+
+export const addDescriptionMutation = gql`
+  mutation addDescription(
+    $title: String!
+    $description: String!
+    $icon: String!
+  ) {
+    addDescription(title: $title, description: $description, icon: $icon) {
+      title
+      _id
+      description
+      icon
+    }
+  }
+`;
