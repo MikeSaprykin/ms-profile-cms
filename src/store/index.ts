@@ -9,7 +9,9 @@ import {
   DescriptionsState,
   descriptionsReducer as descriptions,
   deleteDescription,
-  addDescription$
+  addDescription$,
+  selectDescriptionForEdit$,
+  editDescription$
 } from './descriptions';
 import {
   ToastsState,
@@ -18,7 +20,13 @@ import {
 } from './toasts';
 
 export const history = createHistory();
-const rootEpic = combineEpics(deleteDescription, triggerToastEpic, addDescription$);
+const rootEpic = combineEpics(
+  deleteDescription,
+  triggerToastEpic,
+  addDescription$,
+  selectDescriptionForEdit$,
+  editDescription$
+);
 
 export interface State {
   descriptions: DescriptionsState;
@@ -33,10 +41,9 @@ export const store = createStore(
     form,
   }),
   {},
-  composeWithDevTools(applyMiddleware(
-      createEpicMiddleware(rootEpic),
-      routerMiddleware(history)
-  ))
+  composeWithDevTools(
+    applyMiddleware(createEpicMiddleware(rootEpic), routerMiddleware(history))
+  )
 );
 
 export * from './descriptions';

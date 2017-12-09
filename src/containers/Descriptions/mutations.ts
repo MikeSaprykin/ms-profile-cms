@@ -25,3 +25,24 @@ export const addDescriptionMutation = gql`
     }
   }
 `;
+
+export const editDescriptionMutation = gql`
+    mutation editDescription(
+      $title: String!
+      $description: String!
+      $icon: String!
+      $id: String!
+    ) {
+        editDescription(
+            title: $title,
+            description: $description,
+            icon: $icon,
+            id: $id
+        ) {
+            title
+            _id
+            description
+            icon
+        }
+    }
+`;

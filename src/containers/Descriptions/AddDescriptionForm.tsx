@@ -5,14 +5,18 @@ import InputGroup from '../../components/InputGroup';
 import TextArea from '../../components/TextArea';
 import { AddDescriptionSubmit } from './styles';
 import { required } from '../../helpers';
+import { DispatchProp } from 'react-redux';
+import { State } from '../../store';
 
-interface AddDescriptionFormProps extends InjectedFormProps {
+interface AddDescriptionFormProps extends InjectedFormProps<any, any>, DispatchProp<State> {
+    description?: string;
+    title?: string;
 }
 
 class AddDescriptionForm extends React.Component<AddDescriptionFormProps> {
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, children } = this.props;
         return (
             <form onSubmit={handleSubmit}>
                 <InputGroup
@@ -35,7 +39,7 @@ class AddDescriptionForm extends React.Component<AddDescriptionFormProps> {
                     validators={[required]}
                 />
                 <AddDescriptionSubmit type='submit'>
-                    Add Description
+                    {children}
                 </AddDescriptionSubmit>
             </form>
         );
@@ -43,5 +47,6 @@ class AddDescriptionForm extends React.Component<AddDescriptionFormProps> {
 }
 
 export const AddDescriptionFormContainer = reduxForm({
-    form: 'addDescription'
+    form: 'addDescription',
+    enableReinitialize: true
 })(AddDescriptionForm);

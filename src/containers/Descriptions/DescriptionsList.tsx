@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect, DispatchProp } from 'react-redux';
+import { push } from 'react-router-redux';
 import { map } from 'lodash';
 
 import { DescriptionsListWrapper } from './styles';
@@ -11,6 +12,8 @@ import {
     toggleDescriptionExpanded,
     openDeleteModal,
     selectDescriptions,
+    selectDescriptionForEdit,
+    removeSelectedDescriptionId,
     State
 } from '../../store';
 
@@ -19,12 +22,20 @@ interface DescriptionsListProps extends DispatchProp<State> {
     descriptions?: Array<DescriptionModel>;
     openDeleteModal?: any;
     toggleDescriptionExpanded?: any;
+    selectDescriptionForEdit?: any;
+    removeSelectedDescriptionId?: any;
+    push?: any;
 }
 
 class DescriptionsList extends React.Component<DescriptionsListProps> {
 
+    componentWillMount() {
+        this.props.removeSelectedDescriptionId();
+    }
+
     onEdit(id: any) {
-        console.log('iD');
+        this.props.selectDescriptionForEdit(id);
+        this.props.push(`/descriptions/edit/${id}`);
     }
 
     onExpand(id: any) {
@@ -69,5 +80,8 @@ export default connect<any>(
     mapStateToProps,
     {
         toggleDescriptionExpanded,
-        openDeleteModal
+        openDeleteModal,
+        push,
+        selectDescriptionForEdit,
+        removeSelectedDescriptionId
     })(DescriptionsList);

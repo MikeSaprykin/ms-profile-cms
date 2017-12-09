@@ -48,5 +48,20 @@ export const addDescription = (
   payload,
 });
 export const addDescriptionSuccess = (): Action => ({
-   type: types.ADD_DESCRIPTION_SUCCESS
+  type: types.ADD_DESCRIPTION_SUCCESS,
+});
+export const selectDescriptionForEdit = (
+  id: string
+): ActionWithPayload<string> => ({
+  type: types.SELECT_DESCRIPTION_ID,
+  payload: id,
+});
+export const removeSelectedDescriptionId = (): Action => ({
+  type: types.REMOVE_SELECTED_DESCRIPTION_ID,
+});
+export const editDescription = (
+  payload: AddDescriptionPayload
+): ActionWithPayload<AddDescriptionPayload> => ({
+  type: types.EDIT_DESCRIPTION,
+  payload,
 });

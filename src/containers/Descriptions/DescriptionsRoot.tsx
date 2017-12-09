@@ -1,18 +1,11 @@
 import * as React from 'react';
 import { renderRoutes, RouteConfig } from 'react-router-config';
-import { descriptionsQuery } from './query';
-import { QueryProps, graphql } from 'react-apollo';
 
-interface DescriptionsData extends QueryProps {
-    descriptions: Array<any>;
-}
-
-interface DescriptionsRootProps extends QueryProps {
-    data: DescriptionsData;
+interface DescriptionsRootProps {
     route: RouteConfig;
 }
 
-export class DescriptionsRootComponent extends React.Component<DescriptionsRootProps>{
+export class DescriptionsRoot extends React.Component<DescriptionsRootProps> {
     render() {
        return (
             <div>
@@ -21,5 +14,3 @@ export class DescriptionsRootComponent extends React.Component<DescriptionsRootP
         );
     }
 }
-
-export const DescriptionsRoot = DescriptionsRootComponent;

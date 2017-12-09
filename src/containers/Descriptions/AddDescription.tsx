@@ -41,7 +41,9 @@ export class AddDescriptionComponent extends React.Component<AddDescriptionProps
                 <AddDescriptionFormWrapper>
                     <AddDescriptionFormContainer
                         onSubmit={value => addDescription(value)}
-                    />
+                    >
+                        Add Description
+                    </AddDescriptionFormContainer>
                 </AddDescriptionFormWrapper>
             </div>
         );

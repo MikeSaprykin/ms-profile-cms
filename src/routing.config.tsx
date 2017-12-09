@@ -4,7 +4,12 @@ import App from './containers/App';
 import Categories from './containers/Categories';
 import Projects from './containers/Projects';
 import Technologies from './containers/Technologies';
-import { Descriptions, DescriptionsRoot, AddDescription } from './containers/Descriptions';
+import {
+    Descriptions,
+    DescriptionsRoot,
+    AddDescription,
+    EditDescription
+} from './containers/Descriptions';
 
 import { RouteConfig } from 'react-router-config';
 import { Redirect } from 'react-router';
@@ -33,6 +38,10 @@ export const routes: RouteConfig[] = [
             {
                 path: '/descriptions/add',
                 component: AddDescription
+            },
+            {
+                path: '/descriptions/edit/:id',
+                component: EditDescription
             },
             {
                 path: '/',
