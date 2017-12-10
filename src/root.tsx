@@ -10,8 +10,9 @@ import { ConnectedRouter } from 'react-router-redux';
 
 import { store, history } from './store';
 import { routes } from './routing.config';
+import { apiUrl as uri } from './config';
 
-const link = new HttpLink({ uri: 'http://localhost:8080/graphql' });
+const link = new HttpLink({ uri });
 const cache: any = new InMemoryCache();
 
 export const client: any = new ApolloClient({
