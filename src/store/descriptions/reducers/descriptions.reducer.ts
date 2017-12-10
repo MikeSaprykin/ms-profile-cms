@@ -1,7 +1,8 @@
-import { lookUpReducer, ReducerLookUp } from '../../../helpers';
+import { lookUpReducer, ReducerLookUp, toggleLoading } from '../../../helpers';
 import { DescriptionModel } from '../models';
 import { DescriptionTypes as types } from '../actions';
 import { mapKeys } from 'lodash';
+import { isEmpty } from 'ramda';
 
 export interface DescriptionsState {
   descriptions: {
@@ -9,12 +10,16 @@ export interface DescriptionsState {
   };
   deleteModal: boolean;
   idForDelete: string;
+  idForEdit: string;
+  loading: boolean;
 }
 
 const initialState: DescriptionsState = {
-  descriptions: null,
+  descriptions: {},
   deleteModal: false,
   idForDelete: null,
+  idForEdit: null,
+  loading: false,
 };
 
 const lookUp: ReducerLookUp<DescriptionsState> = {
@@ -23,7 +28,7 @@ const lookUp: ReducerLookUp<DescriptionsState> = {
       payload.map(description => ({ ...description, expanded: false })),
       '_id'
     );
-    return { ...state, descriptions };
+    return { ...toggleLoading(false, state), descriptions };
   },
   [types.TOGGLE_DESCRIPTION_EXPANDED]: (state, { payload }) => ({
     ...state,
@@ -50,6 +55,18 @@ const lookUp: ReducerLookUp<DescriptionsState> = {
     idForDelete: null,
     deleteModal: false,
   }),
+  [types.ADD_DESCRIPTION]: toggleLoading(true),
+  [types.ADD_DESCRIPTION_SUCCESS]: toggleLoading(false),
+  [types.SELECT_DESCRIPTION_ID]: (state, { payload }) => ({
+    ...state,
+    idForEdit: payload,
+    loading: isEmpty(state.descriptions),
+  }),
+  [types.REMOVE_SELECTED_DESCRIPTION_ID]: (state, action) => ({
+    ...state,
+    idForEdit: null,
+  }),
+  [types.EDIT_DESCRIPTION]: toggleLoading(true)
 };
 
 export const descriptionsReducer = lookUpReducer(lookUp, initialState);

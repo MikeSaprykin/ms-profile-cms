@@ -1,4 +1,4 @@
-import { ActionWithPayload } from '../../../helpers';
+import { ActionWithPayload } from '../../../helpers/helpers';
 import { ToastsTypes as types } from './toasts.types';
 import { Toast, ToastColor } from '../models';
 
