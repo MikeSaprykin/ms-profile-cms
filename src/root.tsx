@@ -7,9 +7,8 @@ import { ApolloClient } from 'apollo-client';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
 
-import { store } from './store';
+import { store, history } from './store';
 import { routes } from './routing.config';
 
 const link = new HttpLink({ uri: 'http://localhost:8080/graphql' });
@@ -20,8 +19,6 @@ export const client: any = new ApolloClient({
     cache,
     connectToDevTools: true
 });
-
-const history = createHistory();
 
 export default () => (
     <ApolloProvider client={client}>

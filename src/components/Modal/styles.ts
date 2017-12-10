@@ -58,16 +58,13 @@ export const ModalOverlayWrapper = styled(ReactCSSTransitionGroup)`
   .modal-overlay-enter {
     opacity: 0.01;
   }
-
   .modal-overlay-enter.modal-overlay-enter-active {
     opacity: 1;
     transition: opacity 200ms ease-in;
   }
-
   .modal-overlay-leave {
     opacity: 1;
   }
-
   .modal-overlay-leave.modal-overlay-leave-active {
     opacity: 0.01;
     transition: opacity 100ms ease-in;
@@ -91,7 +88,6 @@ export const ModalContentWrapper = styled(ReactCSSTransitionGroup)`
   .modal-content-enter {
     animation: ${sweetAlertAnimation} 300ms;
   }
-
   .modal-content-leave.modal-content-leave-active {
     animation: ${hideSweetAlert} 200ms;
   }

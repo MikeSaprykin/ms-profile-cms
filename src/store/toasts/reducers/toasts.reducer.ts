@@ -1,6 +1,6 @@
 import { omit } from 'lodash';
 
-import { lookUpReducer, ReducerLookUp } from '../../../helpers';
+import { lookUpReducer, ReducerLookUp } from '../../../helpers/helpers';
 import { Toast } from '../models';
 import { ToastsTypes as types } from '../actions';
 

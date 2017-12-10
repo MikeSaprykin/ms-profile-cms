@@ -6,10 +6,10 @@ import { isEqual } from 'lodash';
 
 import { descriptionsQuery } from './query';
 import { CardHeader } from '../../components/Card';
-import { Button } from '../../components/Button';
+import { ButtonLink } from '../../components/Button';
 import DeleteDescriptionModal from '../../components/DeleteDescriptionModal';
 
-import { HeaderContent, ButtonContent } from './styles';
+import { HeaderContent, ButtonLinkContent, DescriptionsSubHeader } from './styles';
 import {
     DescriptionsState,
     selectDeleteModal,
@@ -33,11 +33,18 @@ export interface DescriptionsPropTypes extends DispatchProp<DescriptionsState> {
     deleteModal: boolean;
 }
 
-export class Descriptions extends React.Component<DescriptionsPropTypes, any> {
+export class DescriptionsComponent extends React.Component<DescriptionsPropTypes, any> {
 
     componentWillReceiveProps(nextProps: DescriptionsPropTypes) {
-        if (!isEqual(nextProps.data.descriptions, this.props.data.descriptions)) {
+        if (!isEqual(nextProps.data.descriptions.length, this.props.data.descriptions)) {
             this.props.setDescriptions(nextProps.data.descriptions);
+        }
+    }
+
+    componentWillMount() {
+        const { setDescriptions, data: { descriptions }} = this.props;
+        if (descriptions) {
+            setDescriptions(descriptions);
         }
     }
 
@@ -53,13 +60,17 @@ export class Descriptions extends React.Component<DescriptionsPropTypes, any> {
                 <CardHeader>
                     <HeaderContent>
                         <h3>Descriptions</h3>
-                        <Button>
-                            <ButtonContent>
+                        <ButtonLink>
+                            <ButtonLinkContent to='/descriptions/add'>
                                 <i className='fa fa-plus' />
                                 Add new description
-                            </ButtonContent>
-                        </Button>
+                            </ButtonLinkContent>
+                        </ButtonLink>
                     </HeaderContent>
+                    <DescriptionsSubHeader>
+                        Blocks with title, description and an icon. Icon is just a string, representing font awesome
+                        or simple line icons icon class.
+                    </DescriptionsSubHeader>
                 </CardHeader>
                 <DescriptionsList loading={loading} />
                 <DeleteDescriptionModal
@@ -75,7 +86,7 @@ export class Descriptions extends React.Component<DescriptionsPropTypes, any> {
 const mapStateToProps = (state: State) => ({
    deleteModal: selectDeleteModal(state)
 });
-export default connect<any>(
+export const Descriptions = connect<any>(
     mapStateToProps,
     {
         setDescriptions,
@@ -83,5 +94,5 @@ export default connect<any>(
         confirmDeleteDescription
     }
 )(
-    graphql(descriptionsQuery)(Descriptions)
+    graphql(descriptionsQuery)(DescriptionsComponent)
 );

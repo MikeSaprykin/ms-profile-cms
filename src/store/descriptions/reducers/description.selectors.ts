@@ -24,3 +24,24 @@ export const selectIdForDelete = createSelector(
   descriptionsStateSelector,
   selectIdForDeleteState
 );
+export const selectLoadingState = (state: DescriptionsState) => state.loading;
+export const selectLoading = createSelector(
+  descriptionsStateSelector,
+  selectLoadingState
+);
+export const selectIdForEditState = (state: DescriptionsState): string =>
+  state.idForEdit;
+export const selectIdForEdit = createSelector(
+  descriptionsStateSelector,
+  selectIdForEditState
+);
+
+export const selectSelectedDescriptionState = createSelector(
+  selectDescriptionsState,
+  selectIdForEditState,
+  (descriptions, id) => descriptions[id] || {}
+);
+export const selectSelectedDescription = createSelector(
+  descriptionsStateSelector,
+  selectSelectedDescriptionState
+);
