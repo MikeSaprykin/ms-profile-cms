@@ -8,10 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {
   DescriptionsState,
   descriptionsReducer as descriptions,
-  deleteDescription,
-  addDescription$,
-  selectDescriptionForEdit$,
-  editDescription$
+  DESCRIPTIONS_EPICS
 } from './descriptions';
 import {
   ToastsState,
@@ -21,11 +18,8 @@ import {
 
 export const history = createHistory();
 const rootEpic = combineEpics(
-  deleteDescription,
   triggerToastEpic,
-  addDescription$,
-  selectDescriptionForEdit$,
-  editDescription$
+  ...DESCRIPTIONS_EPICS
 );
 
 export interface State {

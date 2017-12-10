@@ -43,9 +43,9 @@ const readQueryWrapper = (fn: Function) => {
 
 const updateDescriptionsProxy = (proxy, result) =>
   readQueryWrapper(() => {
-    const data = proxy.readQuery({ query: descriptionsQuery }, true);
+    const data = proxy.readQuery({ query: descriptionsQuery, variables: { id: null } }, true);
     data.descriptions = result;
-    proxy.writeQuery({ query: descriptionsQuery, data });
+    proxy.writeQuery({ query: descriptionsQuery, data, variables: { id: null } });
   });
 
 const triggerSuccessToast = (message: string) =>
@@ -64,7 +64,7 @@ const DELETE_DESCRIPTION_SUCCESS_MESSAGE =
 const ADD_DESCRIPTION_SUCCESS_MESSAGE = `${DESCRIPTION_SUCCESS_MESSAGE} added!`;
 const EDIT_DESCRIPTION_SUCCESS_MESSAGE = `${DESCRIPTION_SUCCESS_MESSAGE} added!`;
 
-export const deleteDescription = (actions$, store) =>
+const deleteDescription$ = (actions$, store) =>
   actions$.pipe(
     ofType(types.DELETE_DESCRIPTION_CONFIRM),
     map(() => selectIdForDelete(store.getState())),
@@ -84,7 +84,7 @@ export const deleteDescription = (actions$, store) =>
     ])
   );
 
-export const addDescription$ = (actions$, store) =>
+const addDescription$ = (actions$, store) =>
   actions$.pipe(
     ofType(types.ADD_DESCRIPTION),
     map(toPayload),
@@ -105,7 +105,7 @@ export const addDescription$ = (actions$, store) =>
     ])
   );
 
-export const selectDescriptionForEdit$ = (actions$, store) =>
+const selectDescriptionForEdit$ = (actions$, store) =>
   actions$.pipe(
     ofType(types.SELECT_DESCRIPTION_ID),
     map(toPayload),
@@ -122,7 +122,7 @@ export const selectDescriptionForEdit$ = (actions$, store) =>
     map(({ data: { descriptions } }) => setDescriptions(descriptions))
   );
 
-export const editDescription$ = (actions$, store) =>
+const editDescription$ = (actions$, store) =>
     actions$.pipe(
         ofType(types.EDIT_DESCRIPTION),
         map(toPayload),
@@ -145,3 +145,10 @@ export const editDescription$ = (actions$, store) =>
             triggerSuccessToast(EDIT_DESCRIPTION_SUCCESS_MESSAGE),
         ])
     );
+
+export const DESCRIPTIONS_EPICS = [
+    deleteDescription$,
+    addDescription$,
+    selectDescriptionForEdit$,
+    editDescription$
+];
